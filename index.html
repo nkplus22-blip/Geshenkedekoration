@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -14,8 +15,8 @@
     }
     *{box-sizing:border-box;}
     body{margin:0;font-family:system-ui, sans-serif;background:var(--bg);color:#222;position:relative;overflow-x:hidden;}
-    .bg-flowers{position:fixed;inset:0;z-index:-1;pointer-events:none;}
-    .flower{position:absolute;width:30px;height:30px;border-radius:50%;opacity:0.4;animation:floaty linear infinite;}
+    .bg-flowers{position:fixed;inset:0;z-index:-1;pointer-events:none;font-size:24px;user-select:none;}
+    .flower{position:absolute;opacity:0.6;animation:floaty linear infinite;display:flex;align-items:center;justify-content:center;}
     @keyframes floaty{
       0%{transform:translateY(100vh) translateX(0) rotate(0deg);}
       100%{transform:translateY(-50px) translateX(50px) rotate(360deg);}
@@ -42,7 +43,7 @@
   </style>
 </head>
 <body>
-  <!-- animacija cvjetova -->
+  <!-- animacija cvjetova i motiva -->
   <div class="bg-flowers" id="bg-flowers"></div>
 
   <div class="wrap">
@@ -142,18 +143,22 @@
     });
   }
 
-  // animacija cvjetova plava, crvena, žuta
+  // animacija motiva 🌸 🎁 🎀 🥳 u bojama
   const bg = document.getElementById("bg-flowers");
-  const colors = ["rgba(0,102,204,0.4)", "rgba(204,0,0,0.4)", "rgba(255,204,0,0.4)"];
-  for(let i=0;i<20;i++){
+  const motifs = ["🌸","🎁","🎀","🥳"];
+  const colors = ["#0066CC","#CC0000","#FFCC00","#FF66AA"];
+  for(let i=0;i<30;i++){
     const f = document.createElement("div");
     f.className="flower";
-    f.style.left=Math.random()*100+"%";
-    f.style.top=Math.random()*100+"%";
-    f.style.width=(20+Math.random()*25)+"px";
-    f.style.height=f.style.width;
-    f.style.background=colors[Math.floor(Math.random()*colors.length)];
-    f.style.animationDuration=(8+Math.random()*10)+"s";
+    f.textContent = motifs[Math.floor(Math.random()*motifs.length)];
+    f.style.color = colors[Math.floor(Math.random()*colors.length)];
+    f.style.left = Math.random()*100+"%";
+    f.style.top = Math.random()*100+"%";
+    const size = 20 + Math.random()*25;
+    f.style.fontSize = size + "px";
+    f.style.width = size + "px";
+    f.style.height = size + "px";
+    f.style.animationDuration = (8 + Math.random()*10) + "s";
     bg.appendChild(f);
   }
 </script>
