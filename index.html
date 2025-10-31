@@ -15,7 +15,7 @@
     *{box-sizing:border-box;}
     body{margin:0;font-family:system-ui, sans-serif;background:var(--bg);color:#222;position:relative;overflow-x:hidden;}
     .bg-flowers{position:fixed;inset:0;z-index:-1;pointer-events:none;}
-    .flower{position:absolute;width:30px;height:30px;background:#e07a6a;border-radius:50%;opacity:0.3;animation:floaty linear infinite;}
+    .flower{position:absolute;width:30px;height:30px;border-radius:50%;opacity:0.4;animation:floaty linear infinite;}
     @keyframes floaty{
       0%{transform:translateY(100vh) translateX(0) rotate(0deg);}
       100%{transform:translateY(-50px) translateX(50px) rotate(360deg);}
@@ -36,7 +36,8 @@
     .title{font-weight:600;margin-bottom:4px;}
     .price{font-weight:700;color:var(--accent);margin-bottom:8px;}
     .btn{padding:10px 12px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;color:#fff;background:var(--wa);border:none;cursor:pointer;}
-    footer{margin-top:24px;padding:12px;border-top:1px solid #eee;display:flex;justify-content:space-between;}
+    footer{margin-top:24px;padding:12px;border-top:1px solid #eee;display:flex;flex-direction:column;align-items:center;gap:8px;}
+    footer .contact-btn{padding:8px 12px;border-radius:8px;text-decoration:none;color:#fff;background:var(--wa);font-weight:600;}
     @media(max-width:520px){.thumb{height:150px;}}
   </style>
 </head>
@@ -65,6 +66,7 @@
     <footer>
       <div>Kontakt</div>
       <div id="contact-number">+49 1573 7824794</div>
+      <a class="contact-btn" href="https://wa.me/4915737824794" target="_blank">Kontaktiraj na WhatsApp</a>
     </footer>
   </div>
 
@@ -140,17 +142,18 @@
     });
   }
 
-  // animacija cvjetova
+  // animacija cvjetova plava, crvena, žuta
   const bg = document.getElementById("bg-flowers");
-  for(let i=0;i<15;i++){
+  const colors = ["rgba(0,102,204,0.4)", "rgba(204,0,0,0.4)", "rgba(255,204,0,0.4)"];
+  for(let i=0;i<20;i++){
     const f = document.createElement("div");
     f.className="flower";
     f.style.left=Math.random()*100+"%";
     f.style.top=Math.random()*100+"%";
-    f.style.width=(20+Math.random()*20)+"px";
+    f.style.width=(20+Math.random()*25)+"px";
     f.style.height=f.style.width;
-    f.style.animationDuration=(10+Math.random()*10)+"s";
-    f.style.background=`rgba(224,122,106,${0.1+Math.random()*0.2})`;
+    f.style.background=colors[Math.floor(Math.random()*colors.length)];
+    f.style.animationDuration=(8+Math.random()*10)+"s";
     bg.appendChild(f);
   }
 </script>
